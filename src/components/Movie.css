@@ -1,0 +1,6 @@
+.movie-container{
+    display:flex
+}
+.movie-container div{
+    flex:1
+}
