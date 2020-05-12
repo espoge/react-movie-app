@@ -2,12 +2,12 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Movies from './Movies'
 import Movie from './Movie'
+import PageNotFound from './PageNotFound'
 
 import Home from './Home'
 const MovieController = () =>{
     return(
         <div>
-          
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/popular" exact component={Movies} />
@@ -15,6 +15,7 @@ const MovieController = () =>{
                 <Route path="/top_rated" exact  component={Movies} />
                 <Route path="/upcoming" exact component={Movies} />
                 <Route path="/movie/:id"  component={Movie} />
+                <Route  component={PageNotFound} />
             </Switch>
            
         </div>

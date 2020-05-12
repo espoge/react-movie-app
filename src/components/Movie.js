@@ -17,6 +17,7 @@ const Movie = props =>{
 
     return(
         <div className="movie-container">
+            <p onClick={()=>props.history.goBack()}>go back</p>
             <div>
                 <h1>{movie.title}</h1>
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />

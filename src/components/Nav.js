@@ -1,15 +1,18 @@
 import React  from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import './Nav.css'
 
 const Nav = () =>{
     return(
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/popular">Popular</Link></li>
-            <li><Link to="/now_playing">Now Playing</Link></li>
-            <li><Link to="/top_rated">Top Rated</Link></li>
-            <li><Link to="/upcoming">Upcoming</Link></li>
-        </ul>
+        <nav>
+            <ul>
+                <li><NavLink to="/" exact>Home</NavLink></li>
+                <li><NavLink to="/popular">Popular</NavLink></li>
+                <li><NavLink to="/now_playing">Now Playing</NavLink></li>
+                <li><NavLink to="/top_rated">Top Rated</NavLink></li>
+                <li><NavLink to="/upcoming">Upcoming</NavLink></li>
+            </ul>
+        </nav>
     )
 }
 
