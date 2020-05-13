@@ -11,6 +11,10 @@ li {
 nav {
     background-color: #57d787;
     padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: 100%
+
 }
 nav a{
 color: #fff;

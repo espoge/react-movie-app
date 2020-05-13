@@ -1,23 +1,33 @@
 import React, {useEffect, useState } from 'react';
+import {useParams, useHistory} from 'react-router-dom';
+
 import axios from 'axios';
 import './Movie.css'
 const Movie = props =>{
+    const {id} = useParams()
+    const {goBack} = useHistory()
     const [movie, setMovie] = useState({})
+    const [isError,setIsError] = useState(false)
+    
     useEffect(()=>{
-        axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=6ac290699faeb117ff37c20029f20b9b&append_to_response=credits`)
-        .then(response=>{
-          let data = response.data
-          setMovie(data)
-          console.log(data)
-        })
-        .catch(e=>{
-          console.log(e)
-        })
-      },[])
-
+      const fetchData = async () =>{
+        try{
+          setIsError(false)
+          const data = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=6ac290699faeb117ff37c20029f20b9b&append_to_response=credits`)
+          setMovie(data.data)
+        }catch(error){
+          setIsError(true)
+          console.log(error)
+        }
+      }
+      fetchData()
+    },[id])
+  
+    const error = (<h1>Oops..something wrong</h1>)
     return(
-        <div className="movie-container">
-            <p onClick={()=>props.history.goBack()}>go back</p>
+        <section>
+         <button type="button" onClick={()=>goBack()}>go back</button>
+        {!isError ? <div className="movie-container">
             <div>
                 <h1>{movie.title}</h1>
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
@@ -25,7 +35,9 @@ const Movie = props =>{
             <div>
                 <p>{movie.overview}</p>
             </div>
-        </div>
+
+        </div> : error}
+        </section>
     )
 }
 

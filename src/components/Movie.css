@@ -4,3 +4,11 @@
 .movie-container div{
     flex:1
 }
+section{
+    margin-top: 100px;
+}
+button {
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+}
