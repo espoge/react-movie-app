@@ -7,7 +7,6 @@ import PageNotFound from './PageNotFound'
 import Home from './Home'
 const MovieController = () =>{
     return(
-        <div>
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/popular" exact component={Movies} />
@@ -17,8 +16,6 @@ const MovieController = () =>{
                 <Route path="/movie/:id"  component={Movie} />
                 <Route  component={PageNotFound} />
             </Switch>
-           
-        </div>
     )
 }
 
