@@ -1,0 +1,15 @@
+.addToFav{
+    background-color: green;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.removeToFav{
+    background-color: orange;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}

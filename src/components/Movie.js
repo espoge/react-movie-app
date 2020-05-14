@@ -1,4 +1,6 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useContext } from 'react';
+import {MoviesContext} from './MoviesContext'
+import FavButtons from './FavButtons'
 import {useParams, useHistory} from 'react-router-dom';
 
 import axios from 'axios';
@@ -7,6 +9,7 @@ const Movie = props =>{
     const {id} = useParams()
     const {goBack} = useHistory()
     const [movie, setMovie] = useState({})
+
     const [isError,setIsError] = useState(false)
     
     useEffect(()=>{
@@ -22,18 +25,21 @@ const Movie = props =>{
       }
       fetchData()
     },[id])
-  
+
     const error = (<h1>Oops..something wrong</h1>)
     return(
         <section>
          <button type="button" onClick={()=>goBack()}>go back</button>
         {!isError ? <div className="movie-container">
             <div>
-                <h1>{movie.title}</h1>
+                <h5>{movie.title}</h5>
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
             </div>
             <div>
                 <p>{movie.overview}</p>
+                <div>
+                  <FavButtons movie={movie}/>
+              </div>
             </div>
 
         </div> : error}
