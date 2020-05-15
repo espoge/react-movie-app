@@ -15,7 +15,7 @@ const Movies = props =>{
     },[props.match.url])*/
 
 
-    const {path} = useRouteMatch()
+    const {path} = useRouteMatch();
     const fetchData = async () =>{
       try{
         setIsError(false)

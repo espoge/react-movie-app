@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import './FavButtons.css'
 
 const FavButtons = ({movie}) =>{
-    FavButtons.propTypes = {
-        movie: PropTypes.object.isRequired,
-    }    
     const [favourite, setFavourite] = useContext(MoviesContext)
     const addToFav = movie =>{
         setFavourite(prevFav=>[
@@ -33,5 +30,8 @@ const FavButtons = ({movie}) =>{
         </div>
     )
 }
+FavButtons.propTypes = {
+    movie: PropTypes.object.isRequired,
+}    
 
 export default FavButtons
