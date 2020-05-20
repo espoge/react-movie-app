@@ -1,0 +1,19 @@
+.time-container {
+    display: flex;
+    margin-bottom: 50px
+}
+.time-container label{
+    flex:1
+}
+
+.time-range{
+    height:100px;
+    width:150px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+.time-range input {
+    border: none;
+    cursor:pointer;
+    margin-bottom: 5px;
+}

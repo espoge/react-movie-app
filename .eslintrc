@@ -1,0 +1,24 @@
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "prettier", "markdown"],
+  "root": true,
+  "rules": {
+    // Prettier are errors
+    "prettier/prettier": ["error"],
+    // Allow JSX on JS Files (React only)
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-continue": "off"
+  }
+}

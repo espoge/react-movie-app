@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import DatePicker from 'react-datepicker';
+import CustomDatePicker from './CustomDatePicker';
 import "react-datepicker/dist/react-datepicker.css";
 import './UserForm.css'
 import { Formik, Field, Form, ErrorMessage  } from 'formik';
@@ -9,12 +9,12 @@ import * as Yup from 'yup';
 
 const UserForm = () => {
 // const [initialValues, setInitialValues] = useState({ email: '', password:'', repassword:'', newsCheck: false, newsletter:'', date:new Date()});
- const [startDate, setStartDate] = useState(new Date());
- const [newsletter, setNewsletter] = useState(false);
+ /*const [startDate, setStartDate] = useState(new Date());
+ const [newsletter, setNewsletter] = useState(false);*/
  return (
    <section className="form-container">
     <Formik
-    initialValues={{ email: '', password:'', repassword:'', frequency:''} }
+    initialValues={{ email: '', password:'', repassword:'', frequency:'', mydate: new Date()} }
   //  initialValues={initialValues}
     //enableReinitialize
     validationSchema={Yup.object({
@@ -35,13 +35,12 @@ const UserForm = () => {
     })}
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
-        let allData = {...values, date:startDate, newsletler: newsletter}
-        //return console.log(allData)
-        alert(JSON.stringify(allData, null, 2));
+        alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
       }, 1000);
     }}
   >
+    {({values, isSubmitting})=>(
     <Form>
       <div className="input-group">
         <label htmlFor="email">Email</label>
@@ -59,20 +58,20 @@ const UserForm = () => {
       </div>
       <div className="input-group">
         <label htmlFor="repassword">Repeat password</label>
-        <Field name="repassword" type="text" />
+        <Field name="repassword" type="text" disabled={isSubmitting}/>
         <div className="error">
           <ErrorMessage name="repassword" />
         </div>
       </div>
       <div className="input-group">
       <label>Select a date</label>
-        <DatePicker dateFormat="dd/MM/yyyy" name="date" selected={startDate}  maxDate={new Date()} onChange={date => setStartDate(date)} />
+         <Field component={CustomDatePicker} name="mydate" selected={values.mydate} maxDate={new Date()} dateFormat="dd/MM/yyyy"/>
       </div>
       <div className="input-group">
         <label htmlFor="repassword">Send me the newsletler</label>
-        <input type="checkbox" name="newsletter" checked={newsletter} onChange={e => setNewsletter(e.target.checked)}/>
+        <Field name="newsletter" type="checkbox" disabled={isSubmitting}/>
       </div>
-      {newsletter ?
+      {values.newsletter ?
       <div className="input-group">
         <label htmlFor="repassword">I want to it receive every :</label>
         <Field as="select" name="frequency">
@@ -82,8 +81,8 @@ const UserForm = () => {
         </Field>
       </div>: null } 
 
-      <button type="submit"> Submit</button>
-    </Form>
+      <button type="submit" disabled={isSubmitting}> Submit</button>
+    </Form>)}
   </Formik>
   </section>
   )
